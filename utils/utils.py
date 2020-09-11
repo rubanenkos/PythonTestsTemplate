@@ -79,16 +79,6 @@ def current_time_in_milliseconds():
     return int(round(time.time() * 1000))
 
 
-def capture_screenshot(inst, screenshot_name):
-    if inst is not None and type(inst) is dict:
-        try:
-            allure.attach(inst['instance'].get_browser().get_screenshot_as_png(),
-                          name=screenshot_name,
-                          attachment_type=AttachmentType.PNG)
-        except Exception:
-            pass
-
-
 def csv_to_json(my_file):
     my_data = list()
     with open(my_file, newline = '') as csv_file:
@@ -99,40 +89,18 @@ def csv_to_json(my_file):
     return my_data
 
 
+def capture_screenshot(instance, screenshot_name=None):
+    if screenshot_name is None:
+        screenshot_name = get_random_string()
+        logging.info(f"Generated the screenshot {screenshot_name}.png")
+    if instance is not None:
+        try:
+            instance.get_screenshot_as_file(ProjectPaths.LOG_IMAGES.value + screenshot_name + '.png')
+            allure.attach(instance.get_screenshot_as_png(),
+                          name=screenshot_name, attachment_type=AttachmentType.PNG)
+        except Exception:
+            pass
 
-# def get_field_from_scenario(my_json, root_field, field):
-#     """ get specific field(pair key:value) from whole tree"""
-#     result = None
-#     if my_json and field:
-#         json_tree = objectpath.Tree(my_json)
-#         result = json_tree.execute('$..' + root_field)
-#         result_json_tree = objectpath.Tree(result)
-#         result = tuple(result_json_tree.execute('$..' + field))
-#     return result
-#
-#
-# def get_part_from_scenario(my_json, root_field):
-#     """ get part of tree """
-#     result = None
-#     if my_json and root_field:
-#         json_tree = objectpath.Tree(my_json)
-#         result = list(json_tree.execute('$.' + root_field))
-#     return result
-#
-#
-# def get_value_from_field(my_json, field):
-#     """ get value from tree """
-#     result = None
-#     if my_json and field:
-#         json_tree = objectpath.Tree(my_json)
-#         result = tuple(json_tree.execute('$..' + field))
-#     return result
-
-
-def capture_screenshot(inst, screenshot_name):
-    logging.info(f"Generated the screenshot {screenshot_name}.png")
-    allure.attach(inst.get_screenshot_as_file(ProjectPaths.LOG_IMAGES.value + get_random_string() + '.png'),
-                  name=screenshot_name, attachment_type=AttachmentType.PNG)
 
 def compare_lists_entities(list_a, list_b):
     difference = list(set(list_a) ^ set(list_b))
