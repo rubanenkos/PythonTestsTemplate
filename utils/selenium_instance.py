@@ -21,7 +21,7 @@ class SeleniumInstance:
             chrome_options.add_experimental_option("prefs", {"profile.default_content_setting_values.notifications": 1})
             self.browser = webdriver.Chrome(options=chrome_options,
                                             executable_path=main_directory + "/" + ProjectPaths.CHROME_DRIVER.value)
-            logging.info(f"\nChromedriver is set up at: {str(datetime.datetime.now())}")
+            logging.info(f"Chromedriver is set up at: {str(datetime.datetime.now())}")
             if headless == 'YES':
                 window_weight = 1920
                 window_height = 1080
@@ -36,4 +36,3 @@ class SeleniumInstance:
 
     def close_browser(self):
         self.browser.close()
-        logging.info(f"Chrome is teared down at: {str(datetime.datetime.now())}")
