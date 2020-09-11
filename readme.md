@@ -82,6 +82,7 @@ Which generates a report in temporary folder from the data found in the provided
 a local Jetty server instance, serves generated report and opens it in the default browser.
 
 **Examples:**
+
 a)
 
     pytest --alluredir allure-results/ --clean-alluredir
