@@ -3,7 +3,7 @@ import pytest
 from test_frames.flow.main_flow import MainFlow
 from tests.base_test import BaseTest
 from utils.const_params import SITE_SECTIONS
-from utils.utils import capture_screenshot, get_random_string
+from utils.utils import capture_screenshot
 
 
 @pytest.mark.home_page
@@ -18,10 +18,9 @@ class TestHomePageSuite(BaseTest):
         try:
             test.validate_is_logo_displayed()
         except Exception:
-            capture_screenshot(self.driver, get_random_string())
+            capture_screenshot(self.driver)
             raise
 
-    # @pytest.mark.draft
     def test_sections(self):
         """
         User story that validates the sections are displayed on the Home page
@@ -31,6 +30,6 @@ class TestHomePageSuite(BaseTest):
         try:
             test.validate_are_sections_present(SITE_SECTIONS)
         except Exception:
-            capture_screenshot(self.driver, get_random_string())
+            capture_screenshot(self.driver)
             raise
 
