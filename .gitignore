@@ -1,2 +1,8 @@
 # Project exclude paths
 /venv/
+.idea/
+__pycache__/
+.pytest_cache/
+allure-results/
+allure-report/
+logs/
