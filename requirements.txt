@@ -1,0 +1,5 @@
+allure-pytest==2.6.5
+allure-python-commons==2.6.5
+pytest==5.0.1
+delayed-assert==0.3.2
+selenium==3.141.0
