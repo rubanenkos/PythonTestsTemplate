@@ -11,7 +11,7 @@ SITE_SECTIONS = {
 
 
 class ProjectPaths(Enum):
-    CHROME_DRIVER = 'drivers/chromedriver_ios'
+    CHROME_DRIVER = 'drivers/chromedriver'
     FILES_USERS = 'settings/'
     FLOW_SCENARIO = 'test_data/scenarios/'
     LOG_IMAGES = 'logs/'
